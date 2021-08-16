@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function checkSum(nums, k) {
+        // Write your code here.
+        // debugger
+        var result=false,sum=0;
+        for(var i=0;i<nums.length;i++){
+            var v=nums[i];
+            if(v<=k) {
+                sum = sum+v;
+                if (sum == k) {
+                    result = true;
+                    break;
+                }
+                if (sum < 0) {
+                    sum = 0;
+                }
+            }
+        }
+        if(nums.length>0&&result===false){
+            nums.shift();
+            return checkSum(nums,k);
+        }
+      return result;
+    }
+    var test=[1,2,3,4,5,3,2,1,6,7];
+    var v=checkSum(test,29)
+    console.log(v)
+
+</script>
+</html>

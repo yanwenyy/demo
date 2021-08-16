@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        img {
+            display: block;
+            margin-top: 20px;
+            width: 200px;
+            height: 200px;
+        }
+        .imgbox{
+            display: inline-block;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container" id="container">
+    <div class="imgbox" id="imageBox">
+        <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2073083920,3302495016&fm=26&gp=0.jpg"
+             data-src="https://pic2.zhimg.com/50/v2-2038cd0997d58ff893d433761b90c102_hd.webp" alt="">
+        <div>标题</div>
+    </div>
+</div>
+
+<script src="../js/lazyLoad.js"></script>
+<script>
+    function lodeImg(num,count) {
+        new Array(num).fill(null).forEach((v ,index)=> {
+            container.innerHTML += `<div class="imgbox" id="imageBox">
+        <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2073083920,3302495016&fm=26&gp=0.jpg"
+          data-src="https://pic2.zhimg.com/50/v2-2038cd0997d58ff893d433761b90c102_hd.webp" alt="">
+          <div>我是标题${count}</div>
+      </div>`
+        })
+    }
+</script>
+</body>
+
+</html>

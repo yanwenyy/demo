@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script src="../js/test.js"></script>
+<script>
+    function treeTransArray(tree, key) {//通过树结构返回普通json数组
+        return tree.reduce(function itemTree(con, item) {
+            con.push(item);
+            if (item[key] && item[key].length >0)
+                item[key].reduce(itemTree, con);
+            return con;
+        }, []).map(function(item){
+            item[key] = [];
+            return item;
+        })
+    }
+    function getChildren(list){
+       var level=0;
+       list.forEach((item)=>{
+           item.level=item.level?item.level:level;
+           if(item.children){
+               var fourChild=[];
+              item.children.forEach((chid,i)=>{
+                  chid.level=item.level+1;
+                  chid.parentName=item.parentName||item.name;
+                  chid.preName=item.name;
+                  chid.prepreName=item.preName||item.name;
+                  chid.preprepreName=item.prepreName||item.name;
+                  if(chid.type==3&&item.level<3){
+                      chid.level=4;
+                      fourChild.push(chid.name);
+                      item.children=item.children.filter((e) => {
+                          return e !== chid;
+                      })
+                  }
+                  item.fourChild=fourChild.join(",");
+              });
+              getChildren(item.children)
+           }
+       })
+        return list;
+    }
+    function listToString(list) {
+        list.forEach((item)=>{
+            if(item.level<3){
+                listToString(item.children)
+            }else if(item.level==3){
+                var v=[];
+                item.children.forEach((e)=>{
+                   v.push(e.name)
+                })
+                item.children=[];
+                item.fourChild=v.join(",");
+            }
+        });
+        return list;
+    }
+    // console.log(test)
+    var dataArr=getChildren(test);
+    dataArr=listToString(dataArr)
+    // var arr2=treeTransArray(dataArr,'children');
+    // var tableList=[];
+    // arr2.forEach((item)=>{
+    //    var v={
+    //        item0:item.level==0?item.name:item.level==1?item.preName:item.parentName,
+    //        item1:item.level==1?item.name:item.name!=''&&item.level==2?item.preName:item.name!=''&&item.level==3?item.prepreName:item.name!=''&&item.level==4?item.preprepreName:'',
+    //        item2:item.level==2?item.name:item.name!=''&&item.level==3?item.preName:item.name!=''&&item.level==4?item.prepreName:'',
+    //        item3:item.level==3?item.name:item.name!=''&&item.level==4?item.preName:'',
+    //        item4:item.fourChild||'',
+    //        id:item.id,
+    //        parentName:item.parentName,
+    //        preName:item.preName
+    //    }
+    //    if(v.item1!=''){
+    //        tableList.push(v)
+    //    }
+    //
+    // });
+     console.log(dataArr)
+</script>
+</html>

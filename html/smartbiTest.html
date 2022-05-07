@@ -1,0 +1,67 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>跳转infotalk页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<script type='text/javascript' src='../js/jquery-3.5.0.min.js'></script>
+</head>
+
+<body>
+	
+	<form action="#" method="post" id="itForm" style="display: none" target="_top">
+		<INPUT id="paramsInfo" type="hidden" name="paramsInfo">
+	</form>
+</body>
+</html>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+				var paramMap = {填报单位主键:"4346d868843911ea8bd2730e23fbb57a",单位ID:"4346d868843911ea8bd2730e23fbb57a",用户单位:"股份公司",
+				resid:"I40289ebd0178149f149f015a01781627310a01f1",
+				user:"admin",password:"admin",
+				url:"http://121.36.7.195/smartbi/vision/openresource.jsp",用户名称:"许保吉"};
+				
+				$("#itForm").attr("action", paramMap.url);
+				for ( var key in paramMap) {
+					var $input = $("<input type='text' />");
+					$("#itForm").append($input);
+					$input.attr("name", key).attr("value", paramMap[key]);
+				}
+				
+				/* 设置报表参数 */
+				var params = new Array();
+				
+				var param = new Object();  
+				param.name = "R1USERID"; 
+				param.value = paramMap.R1USERID;   
+				param.displayValue = paramMap.R1USERID; 
+				param.stanbyValue = paramMap.R1USERID;	
+				params[0] = param;
+				for(var n in paramMap){
+					var obj = new Object();  
+					obj.name = n; 
+					obj.value = parseObj(paramMap[n]);   
+					obj.displayValue = parseObj(paramMap[n]); 
+					obj.stanbyValue = parseObj(paramMap[n]);
+					params.push(obj);
+				}
+				document.getElementById('paramsInfo').value = JSON.stringify(params);
+
+				$("#itForm").submit();
+
+	
+	});
+	
+	function replaceAll(old,start,end){
+		var reg=new RegExp(start,"g");
+		return old.replace(reg,end);   
+	}
+	
+	function parseObj(obj){
+		if(!obj||obj=="undefined" ||obj==undefined)return "";
+		return obj;
+	}
+</script>

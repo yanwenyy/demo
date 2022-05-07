@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var data=[
+        {
+            id:'0',
+            name:'1级',
+            children:[
+                {
+                    id:'1',
+                    name:'11级',
+                    children:[
+                        {
+                            id:'2',
+                            name:'111级',
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+    function getPid(list) {
+        list.forEach((item)=>{
+            if(item.children&&item.children!=[]){
+                item.children.forEach((chid)=>{
+                    chid.pid=item.id;
+                });
+                getPid(item.children)
+            }
+        })
+    }
+    getPid(data);
+    console.log(data);
+</script>
+</html>

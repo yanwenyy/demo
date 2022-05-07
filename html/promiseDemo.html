@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function add (...args){
+        let promiseDemo = new Promise((resolve, reject) => {
+            // code
+            resolve('success')
+            // code
+            reject('failed')
+        });
+        args.forEach((item)=>{
+            promiseDemo.then(item())
+        })
+    }
+    function a() {
+        console.log(1)
+    }
+    function b() {
+        console.log(2)
+    }
+    function c() {
+        console.log(3)
+    }
+    add(a,c,b)
+</script>
+</html>

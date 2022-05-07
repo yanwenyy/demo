@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var _all="[{type=职能处室负责人, name=ss, post=ss, tel=23, phone=2323, orgName=, orgLevel=4, fax=, email=, postcode=, location=, subLine=, contactId=8a8af0e57d311483017d31acb3f0000f, bizEnterpriseinfoId=ff8080814c97e660014c97e6604a0000010b61eea1364beb9bb0b91640afc0b6}, {type=工作人员, name=23, post=232, tel=323, phone=23, orgName=, orgLevel=4, fax=, email=, postcode=, location=, subLine=, contactId=8a8af0e57d311483017d31acb60f0010, bizEnterpriseinfoId=ff8080814c97e660014c97e6604a0000010b61eea1364beb9bb0b91640afc0b6}]";
+    function stringTolist(arg){
+        arg=arg.replace(/\[|]/g,'');
+        arg=arg.replace(/\=/g,':');
+        // arg=arg.replace(/\},/g,'},,,');
+        // arg=arg.split(",,,");
+        console.log(arg)
+    }
+    stringTolist(_all)
+</script>
+</html>

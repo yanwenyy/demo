@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+    //    第一题
+    var str = "I?���love�??�the�?great�?�?wall�in��?beijing";
+    var result = str.replace(/\?[a-z]/g, function (w) {
+        return " " + w.toUpperCase();
+    }).replace(/�[a-z]/g, function (w) {
+        return " " + w.split("�")[1]
+    }).replace(/\?+|�+/g, "");
+    //    第二题
+    var show = [];
+    function list(a) {
+        if (a <= 100) {
+            if (a % 2 == 0) {
+                show.push(a);
+            }
+            a++;
+            return list(a);
+        } else {
+            return show;
+        }
+    }
+    console.log(list(1));
+    //    第三题
+    var time = function () {
+    };
+    time.prototype.order = function (arguments) {
+        var list=arguments,type=typeof list;
+        if(type=='object'&& list instanceof  Array){
+            for(var i in arguments){
+                (function(i) {
+                    var v=list[i].indexOf("|")!=-1?list[i].split("|"):list[i];
+                    if(v[1]){
+                        clearTimeout(timer);
+                        var timer=setTimeout(function(){
+                            eval(v[0]+"()")
+                        }, v[1])
+                    }
+                })(i);
+            }
+        }else{
+            console.log("参数必须是数组!");
+        }
+
+    };
+    time.prototype.interval = function () {
+        var type=typeof arguments;
+        console.log(arguments)
+        if(type=='object'){
+            if(arguments[0] instanceof  Array){
+                var list=arguments[0];
+                console.log(111);
+                for(var i in list){
+//                (function(i) {
+//                    var v=list[i].indexOf("|")!=-1?list[i].split("|"):list[i];
+//                    if(v[1]){
+//                        clearInterval(timer);
+//                        var timer=setInterval(function(){
+//                            eval(v[0]+"()")
+//                        }, v[1])
+//                    }
+//                })(i);
+                }
+            }else if(typeof arguments[0] === "function"){
+                console.log(arguments[1])
+                clearInterval(timer);
+                var timer = setInterval(function () {
+                    eval(arguments[0] + "()")
+                }, arguments[1])
+            }
+
+        }else{
+//            console.log("参数必须是数组!");
+        }
+    };
+    function a(){
+        console.log("aaa")
+    }
+    function b(){
+        console.log("bbb")
+    }
+    function c(){
+        console.log("ccc")
+    }
+    var s=new time();
+//    s.order(['a|2000','b|3000','c']);
+//    s.interval(1);
+//    s.interval(['a|6000','b|4000','c']);
+//    s.interval("111");
+    s.interval(s.order(['a|2000','b|3000','c']),14000)
+</script>
+</html>
